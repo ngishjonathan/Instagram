@@ -83,7 +83,7 @@ class Image(models.Model):
     name = models.CharField(max_length=40)
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, related_name="images")
     description=models.TextField()
-    location=models.ForeignKey(Location, null=True)
+    location=models.ForeignKey(Location, null=True,blank=True)
     tags=models.ManyToManyField(tags, blank=True)
     likes = models.IntegerField(default=0)
     comments= models.TextField(blank=True)
@@ -110,7 +110,7 @@ class Image(models.Model):
         return pictures
 
     @classmethod
-    def filter_by_location(cls, location):
+    def filter_by_(cls, location):
         pictures = cls.objects.filter(location=location)
         return pictures
 
